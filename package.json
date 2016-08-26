@@ -1,0 +1,92 @@
+{
+  "name": "openapi-test",
+  "version": "1.0.0",
+  "description": "Testing react app",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "npm run lint",
+    "test": "mocha --require config/setup-browser-env --watch-extensions tsx,ts --colors src/**/*.spec.ts*",
+    "test:watch": "npm run test -- --watch",
+    "cover": "nyc npm run test",
+    "cover:watch": "nodemon --quiet --watch src --ext ts,tsx --exec npm run cover",
+    "check-coverage": "nyc --check-coverage --statements 80 --branches 80 --functions 80 --lines 80 npm test",
+    "lint": "tslint \"src/**/*.tsx\" \"src/**/*.ts\" --exclude \"src/**/*.d.ts\"",
+    "start": "webpack-dev-server --env.dev --hot",
+    "start:server": "node index.js",
+    "build": "rimraf dist && webpack --env.prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elmariofredo/openapi-test.git"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "webpack2",
+    "mocha"
+  ],
+  "author": "@elmariofredo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elmariofredo/openapi-test/issues"
+  },
+  "homepage": "https://github.com/elmariofredo/openapi-test#readme",
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text",
+      "html"
+    ],
+    "extension": [
+      ".tsx",
+      ".ts"
+    ],
+    "exclude": [
+      "**/*.spec.ts",
+      "**/*.spec.tsx"
+    ],
+    "include": [
+      "src/**"
+    ]
+  },
+  "devDependencies": {
+    "@types/chai": "3.4.30",
+    "@types/lodash": "4.14.32",
+    "@types/mocha": "2.2.29",
+    "@types/react": "0.14.27",
+    "@types/react-dom": "0.14.16",
+    "@types/sinon": "1.16.26",
+    "@types/whatwg-fetch": "0.0.29",
+    "awesome-typescript-loader": "2.1.1",
+    "chai": "3.5.0",
+    "css-loader": "0.23.1",
+    "extract-text-webpack-plugin": "2.0.0-beta.3",
+    "html-webpack-plugin": "2.22.0",
+    "jsdom": "9.4.1",
+    "mocha": "3.0.1",
+    "nodemon": "1.10.0",
+    "nyc": "7.1.0",
+    "postcss-cssnext": "2.7.0",
+    "postcss-loader": "0.9.1",
+    "progress-bar-webpack-plugin": "1.9.0",
+    "rimraf": "2.5.4",
+    "sinon": "1.17.5",
+    "style-loader": "0.13.1",
+    "ts-node": "1.2.2",
+    "tslint": "3.14.0",
+    "tslint-react": "0.4.0",
+    "typescript": "2.0.0",
+    "webpack": "2.1.0-beta.20",
+    "webpack-config-utils": "2.0.0",
+    "webpack-dev-server": "2.1.0-beta.0"
+  },
+  "dependencies": {
+    "body-parser": "1.15.2",
+    "express": "4.14.0",
+    "lodash": "4.15.0",
+    "normalize.css": "4.2.0",
+    "react": "15.3.0",
+    "react-dom": "15.3.0",
+    "whatwg-fetch": "1.0.0"
+  }
+}
