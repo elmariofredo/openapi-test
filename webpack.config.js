@@ -160,7 +160,12 @@ module.exports = (env) => {
     ],
 
     devServer: {
-      headers: { "Access-Control-Allow-Origin": "https://homecredit-test.apigee.net" }
+      headers: { "Access-Control-Allow-Origin": "https://homecredit-test.apigee.net" },
+      host: '0.0.0.0',
+       watchOptions: {
+        aggregateTimeout: 300,
+        poll: 1000
+      }
     }
   }
 };
