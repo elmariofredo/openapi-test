@@ -5,6 +5,8 @@ import 'whatwg-fetch';
 import { Thumbs } from './thumbs';
 import { assign } from 'lodash';
 
+import { Button } from 'react-mdl';
+
 type PrescoringFormProps = {
   gateway: string,
   apikey: string
@@ -137,7 +139,7 @@ export class PrescoringForm extends Component<PrescoringFormProps, PrescoringFor
                 onChange={this.handleChange.bind( this )}
               /></label>
           </div>
-          <input type="submit"/>
+          <Button raised colored>Button</Button>
         </form>
 
         <Thumbs value={this.state.passed}/>

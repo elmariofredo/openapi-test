@@ -12,7 +12,7 @@ WIN: `winpty docker run -it -p8080:8080 openapi-test`
 
 ## Run Development
 
-WIN: `winpty docker run -it -p8080:8080 -v /$PWD://app/dev -w /app/dev openapi-test`
+WIN: `winpty docker run -it -p8080:8080 -v /$PWD://app/dev -w //app/dev openapi-test`
 
 
 

@@ -67,6 +67,7 @@ module.exports = (env) => {
         // CSS
         {
           test: /\.css$/,
+          exclude: /node_modules/,
           loaders: ifNotProd(
             combineLoaders( [
               { loader: 'style-loader' },

@@ -55,6 +55,7 @@
     "@types/mocha": "2.2.29",
     "@types/react": "0.14.27",
     "@types/react-dom": "0.14.16",
+    "@types/react-mdl": "1.5.16",
     "@types/sinon": "1.16.26",
     "@types/whatwg-fetch": "0.0.29",
     "awesome-typescript-loader": "2.1.1",
@@ -87,6 +88,7 @@
     "normalize.css": "4.2.0",
     "react": "15.3.0",
     "react-dom": "15.3.0",
+    "react-mdl": "1.7.1",
     "whatwg-fetch": "1.0.0"
   }
 }
