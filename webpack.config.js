@@ -19,7 +19,10 @@ module.exports = (env) => {
   return {
     context: resolve('src'),
     entry: {
-      app: './main.tsx'
+      app: './main.tsx',
+      vendors: [
+            'webpack-material-design-icons'
+      ]
     },
     output: {
       filename: '[name].[hash].js',
@@ -65,39 +68,53 @@ module.exports = (env) => {
         },
 
         // CSS
+        // {
+        //   test: /\.css$/,
+        //   exclude: /node_modules/,
+        //   loaders: ifNotProd(
+        //     combineLoaders( [
+        //       { loader: 'style-loader' },
+        //       {
+        //         loader: 'css-loader',
+        //         query: {
+        //           modules: true,
+        //           importLoaders: 1,
+        //           localIdentName: '[name]__[local]___[hash:base64:5]',
+        //           sourceMap: true
+        //         }
+        //       },
+        //       { loader: 'postcss-loader' }
+        //     ] ),
+        //     ExtractTextPlugin.extract( {
+        //       fallbackLoader: 'style-loader',
+        //       loader: combineLoaders( [
+        //         {
+        //           loader: 'css-loader',
+        //           query: {
+        //             modules: true,
+        //             importLoaders: 1,
+        //             localIdentName: '[name]__[local]___[hash:base64:5]'
+        //           }
+        //         },
+        //         { loader: 'postcss-loader' }
+        //       ] )
+        //     } )
+        //   )
+        // },
+
         {
           test: /\.css$/,
-          exclude: /node_modules/,
-          loaders: ifNotProd(
-            combineLoaders( [
-              { loader: 'style-loader' },
-              {
-                loader: 'css-loader',
-                query: {
-                  modules: true,
-                  importLoaders: 1,
-                  localIdentName: '[name]__[local]___[hash:base64:5]',
-                  sourceMap: true
-                }
-              },
-              { loader: 'postcss-loader' }
-            ] ),
-            ExtractTextPlugin.extract( {
-              fallbackLoader: 'style-loader',
-              loader: combineLoaders( [
-                {
-                  loader: 'css-loader',
-                  query: {
-                    modules: true,
-                    importLoaders: 1,
-                    localIdentName: '[name]__[local]___[hash:base64:5]'
-                  }
-                },
-                { loader: 'postcss-loader' }
-              ] )
-            } )
-          )
+          loaders: [
+            'style-loader',
+            'css-loader'
+          ]
+        },
+
+        {
+          test: /\.(jpe?g|png|gif|svg|eot|woff|ttf|svg|woff2)$/,
+          loader: "file-loader?name=[name].[ext]"
         }
+
       ],
     },
 

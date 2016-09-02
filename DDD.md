@@ -8,12 +8,13 @@ Docker Driven Development
 ## Run Image
 
 WIN: `winpty docker run -it -p8080:8080 openapi-test`
+UNIX: `docker run -it -p8080:8080 openapi-test`
 
 
 ## Run Development
 
 WIN: `winpty docker run -it -p8080:8080 -v /$PWD://app/dev -w //app/dev openapi-test`
-
+UNIX: `docker run -it -p8080:8080 -v $PWD:/app/dev -w /app/dev openapi-test`
 
 
 npm WARN optional Skipping failed optional dependency /chokidar/fsevents:
