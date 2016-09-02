@@ -7,8 +7,7 @@ Docker Driven Development
 
 ## Run Image
 
-WIN: `winpty docker run -it -p8080:8080 openapi-test`
-UNIX: `docker run -it -p8080:8080 openapi-test`
+`docker run -p8080:8080 openapi-test`
 
 
 ## Run Development
