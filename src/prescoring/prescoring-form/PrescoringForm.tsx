@@ -5,7 +5,7 @@ import 'whatwg-fetch';
 import { Thumbs } from './thumbs';
 import { assign } from 'lodash';
 
-import { Button, Textfield } from 'react-mdl';
+import { Button, Textfield, Grid, Cell, ProgressBar } from 'react-mdl';
 
 type PrescoringFormProps = {
   gateway: string,
@@ -14,6 +14,7 @@ type PrescoringFormProps = {
 
 type PrescoringFormState = {
   passed?: boolean | null,
+  loading?: boolean,
   data?: any
 }
 
@@ -55,6 +56,8 @@ export class PrescoringForm extends Component<PrescoringFormProps, PrescoringFor
 
     event.preventDefault();
 
+    this.setState({ loading: true });
+
     fetch( this.props.gateway,
       {
         method: 'POST',
@@ -85,11 +88,14 @@ export class PrescoringForm extends Component<PrescoringFormProps, PrescoringFor
 
         }
 
+        this.setState({ loading: false });
 
       } )
       .catch( ( error ) => {
 
         alert( error );
+
+        this.setState({ loading: false });
 
       });
 
@@ -112,33 +118,78 @@ export class PrescoringForm extends Component<PrescoringFormProps, PrescoringFor
     return (
       <form onSubmit={this.handleSubmit.bind( this )}>
 
-        <Textfield
-            onChange={this.handleChange.bind( this )}
-            label="First Name"
-            name="firstName"
-            value={this.state.data.firstName}
-            floatingLabel
-        />
+        <Grid>
 
-        <Textfield
-            onChange={this.handleChange.bind( this )}
-            label="Last Name"
-            name="lastName"
-            value={this.state.data.lastName}
-            floatingLabel
-        />
+          <Cell col={2}>
 
-        <Textfield
-            onChange={this.handleChange.bind( this )}
-            label="Personal ID"
-            name="personalIdentificationNumber"
-            value={this.state.data.personalIdentificationNumber}
-            pattern="[0-9]*(\.[0-9]+)?"
-            error="Input is not a number!"
-            floatingLabel
-        />
+            <Textfield
+                onChange={this.handleChange.bind( this )}
+                label="First Name"
+                name="firstName"
+                value={this.state.data.firstName}
+                floatingLabel
+            />
 
-        <Button raised colored>Button</Button>
+          </Cell>
+
+          <Cell col={2}>
+
+            <Textfield
+                onChange={this.handleChange.bind( this )}
+                label="Last Name"
+                name="lastName"
+                value={this.state.data.lastName}
+                floatingLabel
+            />
+
+          </Cell>
+
+          <Cell col={12}>
+
+            <Textfield
+                onChange={this.handleChange.bind( this )}
+                label="Personal ID"
+                name="personalIdentificationNumber"
+                value={this.state.data.personalIdentificationNumber}
+                pattern="[0-9]*(\.[0-9]+)?"
+                error="Input is not a number!"
+                floatingLabel
+            />
+
+          </Cell>
+
+          <Cell col={12}>
+
+            <Textfield
+                onChange={this.handleChange.bind( this )}
+                label="Card Valid To (YYYY-MM-DD)"
+                name="identityCardValidity"
+                value={this.state.data.identityCardValidity}
+                pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"
+                error="Input is not a valid date!"
+                floatingLabel
+            />
+
+          </Cell>
+
+          <Cell col={12}>
+
+            <Button raised colored>Button</Button>
+
+          </Cell>
+
+          <Cell col={12}>
+
+            { this.state.loading ? <ProgressBar indeterminate={true}/> : '' }
+
+            <h3>
+              <Thumbs value={this.state.passed}/>
+            </h3>
+
+          </Cell>
+
+        </Grid>
+
       </form>
     );
 

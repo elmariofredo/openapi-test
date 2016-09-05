@@ -9,12 +9,7 @@ export const App: StatelessComponent<void> = () => {
 
   return (
     <Layout>
-        <Header title="HCI" scroll></Header>
-        <Drawer title="Menu">
-            <Navigation>
-                <a href="">Link</a>
-            </Navigation>
-        </Drawer>
+        <Header title="Prescoring" scroll></Header>
         <Content>
             <Prescoring/>
         </Content>
