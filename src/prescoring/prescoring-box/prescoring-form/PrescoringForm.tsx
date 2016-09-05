@@ -5,7 +5,7 @@ import 'whatwg-fetch';
 import { Thumbs } from './thumbs';
 import { assign } from 'lodash';
 
-import { Button } from 'react-mdl';
+import { Button, Textfield } from 'react-mdl';
 
 type PrescoringFormProps = {
   gateway: string,
@@ -110,40 +110,36 @@ export class PrescoringForm extends Component<PrescoringFormProps, PrescoringFor
   render() {
 
     return (
-      <div>
-        <form onSubmit={this.handleSubmit.bind( this )}>
-          <div>
-          <label>First Name:
-            <input
-              type="text"
-              name="firstName"
-              value={this.state.data.firstName}
-              onChange={this.handleChange.bind( this )}
-            /></label>
-          </div>
-          <div>
-          <label>Last Name:
-            <input
-              type="text"
-              name="lastName"
-              value={this.state.data.lastName}
-              onChange={this.handleChange.bind( this )}
-            /></label>
-          </div>
-          <div>
-            <label>ID:
-              <input
-                type="text"
-                name="personalIdentificationNumber"
-                value={this.state.data.personalIdentificationNumber}
-                onChange={this.handleChange.bind( this )}
-              /></label>
-          </div>
-          <Button raised colored>Button</Button>
-        </form>
+      <form onSubmit={this.handleSubmit.bind( this )}>
 
-        <Thumbs value={this.state.passed}/>
-      </div>
+        <Textfield
+            onChange={this.handleChange.bind( this )}
+            label="First Name"
+            name="firstName"
+            value={this.state.data.firstName}
+            floatingLabel
+        />
+
+        <Textfield
+            onChange={this.handleChange.bind( this )}
+            label="Last Name"
+            name="lastName"
+            value={this.state.data.lastName}
+            floatingLabel
+        />
+
+        <Textfield
+            onChange={this.handleChange.bind( this )}
+            label="Personal ID"
+            name="personalIdentificationNumber"
+            value={this.state.data.personalIdentificationNumber}
+            pattern="[0-9]*(\.[0-9]+)?"
+            error="Input is not a number!"
+            floatingLabel
+        />
+
+        <Button raised colored>Button</Button>
+      </form>
     );
 
   }

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { PrescoringForm } from './prescoring-form/PrescoringForm';
 
+import { Textfield } from 'react-mdl';
+
 type PrescoringFormState = {
   gateway?: string,
   apikey?: string
@@ -35,24 +37,21 @@ export class PrescoringBox extends React.Component<void, PrescoringFormState> {
 
           <legend>Gateway setup:</legend>
 
-          <div>
-            <label>Gateway:
-              <input
+          <Textfield
+              onChange={this.handleChange.bind( this )}
+              label="Gateway"
               name="gateway"
-              size="100"
-              value={ this.state.gateway }
-              onChange={ this.handleChange.bind( this ) }/>
-            </label>
-          </div>
+              value={this.state.gateway}
+              floatingLabel
+          />
 
-          <div>
-            <label>Apikey:
-              <input
-                name="apikey"
-                value={ this.state.apikey }
-                onChange={ this.handleChange.bind( this ) }/>
-            </label>
-          </div>
+          <Textfield
+              onChange={this.handleChange.bind( this )}
+              label="Apikey"
+              name="apikey"
+              value={this.state.apikey}
+              floatingLabel
+          />
 
         </fieldset>
 
